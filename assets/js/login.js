@@ -59,7 +59,7 @@ $('#form_login').submit(function(e){
             layer.msg('登录成功！');
             localStorage.setItem('token',res.token);
             console.log(res.token);
-            //location.href='http://127.0.0.1/index.html';
+            location.href='index.html';
             
         }
     });
