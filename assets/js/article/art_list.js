@@ -119,6 +119,35 @@ $(function () {
 
             layer.close(index);
         });
-    })
+    });
+
+
+
+
+    $('tbody').on('click', '.link-title', function () {
+        // 获取文章的 id
+        const id = $(this).attr('data-id')
+        // 请求文章的数据
+        $.get('/my/article/'+id, function (res) {
+          console.log(res)
+          const htmlStr = template('tmpl-artinfo', res.data)
+          layer.open({
+            type: 1,
+            title: '预览文章',
+            area: ['80%', '80%'],
+            content: htmlStr
+          })
+        })
+      })
+
+
+     // 编辑文章按钮的点击事件处理函数
+     $('tbody').on('click', '.btn-edit', function () {
+        // 获取要编辑的文章的 id
+        const id = $(this).attr('data-id')
+        // 跳转到文章编辑页面
+        location.href = '../article/art_edit1.html?id=' + id
+    
+      })
 
 })

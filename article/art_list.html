@@ -52,6 +52,7 @@
 
                 </tbody>
             </table>
+
             <!-- 分页区域 -->
             <div id="pageBox"></div>
         </div>
@@ -62,13 +63,17 @@
     <script type="text/html" id="tpl-table">
         {{each data}}
         <tr>
-            <td>{{$value.title}}</td>
+            <!-- <td>{{$value.title}}</td> -->
+            <td>
+                <a href="javascript:;" class="link-title" data-id="{{$value.Id}}">{{$value.title}}</a>
+            </td>
             <td>{{$value.cate_name}}</td>
             <td>{{$value.pub_date|dataFormat}}</td>
             <td>{{$value.state}}</td>
             <td>
-                <button type="button" class="layui-btn layui-btn-xs">编辑</button>
-                <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-delete" data-id="{{$value.Id}}">删除
+                <button type="button" class="layui-btn layui-btn-xs btn-edit" data-id="{{$value.Id}}">编辑</button>
+                <button type="button" class="layui-btn layui-btn-danger layui-btn-xs btn-delete"
+                    data-id="{{$value.Id}}">删除
             </td>
         </tr>
         {{/each}}
@@ -81,12 +86,28 @@
         {{/each}}
     </script>
 
+    <!-- 文章详情的模板结构 -->
+    <script type="text/html" id="tmpl-artinfo">
+        <div class="artinfo-box">
+          <h1 class="artinfo-title">{{title}}</h1>
+          <div class="artinfo-bar">
+            <span>作者：{{author_id}}</span>
+            <span>发布时间：{{pub_date|dataFormat}}</span>
+            <span>所属分类：{{cate_id}}</span>
+            <span>状态：{{state}}</span>
+          </div>
+          <hr>
+          <img src="{{'http://api-breakingnews-web.itheima.net' + cover_img}}" alt="" class="artinfo-cover">
+          <div>{{@ content}}</div>
+        </div>
+    </script>
 
 
+    <script src="../assets/lib/template-web.js"></script>
     <script src="../assets/lib/jquery.js"></script>
     <script src="../assets/lib/layui/layui.all.js"></script>
     <script src="../assets/js/baseAPI.js"></script>
-    <script src="../assets/lib/template-web.js"></script>
+
     <script src="../assets/js/article/art_list.js"></script>
 </body>
 
